@@ -1,22 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from 'react';
 
 function App() {
+  /* //////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\  USE STATES /////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
+
+const [name , setName] = useState('username')
+
+const profile = {
+  fullname:"Othmane Merzak",
+  bio:"This is my Bio",
+  imgsrc:"image source",
+  profession:"This is my profession"
+}
+
+const [show, setShow] = useState(false);
+
+function toggle () {
+  setShow (show => !show);
+}
+
+useEffect(() => {
+  setName(profile)
+}, []);
+
+
+
+
+console.log(profile);
+  
+  /* //////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\  RETURN SECTION /////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*/
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>This is your Profile:</h1>
+        {show && profile.bio}
+        <br/>
+        {show && profile.fullname} 
+        <br/>
+        {show && profile.profession} 
+        <br/>
+        {show && profile.imgsrc}
+        <br/>
+       <button onClick={toggle}>CLICK ME</button>
       </header>
     </div>
   );
